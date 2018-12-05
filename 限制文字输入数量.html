@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+</head>
+<body>
+    input：
+    <input name="textfield" type="text"  maxlength="20" value="请输入文字.."
+    onfocus="if (value =='请输入文字..'){value =''}"
+    onblur="if (value ==''){value='请输入文字..'}" />
+    <br><br>
+    textarea:
+    <textarea cols="50" rows="5" id="textarea" maxlength="100"  onKeyDown="textdown(event)"
+    onKeyUp="textup()" onfocus="if(value=='限100字'){value=''}"
+    onblur="if (value ==''){value='限100字'}">限100字</textarea>
+
+
+    <SCRIPT type="text/javascript">    
+            function textdown(e) {
+                textevent = e;
+            if (textevent.keyCode == 8) {  //删除键
+                return;
+            }
+            if (document.getElementById('textarea').value.length >= 100) {
+                alert("大侠，手下留情，此处限字100啊")
+                if (!document.all) {
+                    textevent.preventDefault();
+                } else {
+                    textevent.returnValue = false;
+                }
+            }
+        }
+        function textup() {
+            var s = document.getElementById('textarea').value;
+            //判断ID为text的文本区域字数是否超过100个 
+            if (s.length > 100) {
+                document.getElementById('textarea').value = s.substring(0, 100);
+            }
+        }
+</SCRIPT>
+</body>
+</html>
